@@ -1,10 +1,10 @@
-class Bot 
-  def initialize
-    @marker = "X"
+class Computer 
+  def initialize(marker)
+    @marker = marker
     @status = GameStatus.new
   end
 
-  def get_best_move(board, next_player, depth = 0, best_score = {})
+  def get_best_move(board, difficulty)
     available_spaces = []
     best_move = nil
 
@@ -37,12 +37,13 @@ class Bot
     if best_move
       return best_move
     else
+      # Here different difficultyies will be implemented using 0 = easy, 1 = medium, 2 = hard
       n = rand(0..available_spaces.count)
       return available_spaces[n].to_i
     end
   end
 
-  def eval_board(board)
+  def eval_board(board, difficulty)
     spot = nil
 
     until spot
@@ -50,7 +51,7 @@ class Bot
         spot = 4
         board[spot] = @marker
       else
-        spot = get_best_move(board, @marker)
+        spot = get_best_move(board, difficulty)
         if board[spot] != "X" && board[spot] != "O"
           board[spot] = @marker
         else
@@ -58,5 +59,9 @@ class Bot
         end
       end
     end
+  end
+
+  def get_marker
+    return @marker
   end
 end
