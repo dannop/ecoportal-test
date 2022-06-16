@@ -10,7 +10,7 @@ class Human
 
     until spot
       spot = gets.chomp.to_i
-      if Helper.validate_integer_entry(spot, 0, 8) && board[spot] != "X" && board[spot] != "O"
+      if Helper.valid_entry?(spot, 0, 8) && Helper.place_empty?(board[spot])
         board[spot] = @marker
       else
         @ui.invalid_entry

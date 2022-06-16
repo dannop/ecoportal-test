@@ -88,13 +88,13 @@ class Game
         option = gets.chomp.to_i 
       end
 
-      if Helper.validate_integer_entry(option, 0, 2)
+      if Helper.valid_entry?(option, 0, 2)
         if option == 0 # Player vs Computer 
           @ui.render_difficulty
           difficulty_option = gets.chomp.to_i
           last_option = option if difficulty_option != 3
 
-          if Helper.validate_integer_entry(difficulty_option, 0, 3)
+          if Helper.valid_entry?(difficulty_option, 0, 3)
             start_h_vs_c(difficulty_option)
           elsif difficulty_option != 3 # Selected go back
             @ui.invalid_entry 

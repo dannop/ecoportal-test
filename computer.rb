@@ -9,7 +9,7 @@ class Computer
     best_move = nil
 
     board.each do |s|
-      if s != "X" && s != "O"
+      if Helper.place_empty?(s)
         available_spaces << s
       end
     end
@@ -52,7 +52,7 @@ class Computer
         board[spot] = @marker
       else
         spot = get_best_move(board, difficulty)
-        if board[spot] != "X" && board[spot] != "O"
+        if Helper.place_empty?(board[spot])
           board[spot] = @marker
         else
           spot = nil
