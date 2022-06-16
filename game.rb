@@ -29,7 +29,11 @@ class Game
       @first_player.get_entry(@board)
       if finished
         @ui.render_board(@board)
-        @ui.you_win
+        if @status.is_tie(@board)
+          @ui.game_tied
+        else
+          @ui.you_win
+        end
       else 
         @first_bot.eval_board(@board, difficulty)
         @ui.render_board(@board)
