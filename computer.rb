@@ -5,6 +5,8 @@ class Computer
   end
 
   def get_best_move(board, difficulty)
+    # Different difficultyies can be implemented using 0 = easy, 1 = medium, 2 = hard
+      
     available_spaces = []
     best_move = nil
 
@@ -22,7 +24,7 @@ class Computer
         board[as.to_i] = as
         return best_move
       else
-        board[as.to_i] = @hum
+        board[as.to_i] = @marker == "X" ? "O" : "X"
         
         if @status.is_over(board)
           best_move = as.to_i
@@ -37,7 +39,6 @@ class Computer
     if best_move
       return best_move
     else
-      # Here different difficultyies will be implemented using 0 = easy, 1 = medium, 2 = hard
       n = rand(0..available_spaces.count)
       return available_spaces[n].to_i
     end
